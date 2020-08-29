@@ -30,6 +30,11 @@ def webhook():
         vals = query_result.get('parameters').get('number')
         fulfillmentText = "Drawing {} on canvas".format(shape)
         print(fulfillmentText)
+    elif query_result.get('action') == 'variable.define':
+        varname = query_result.get('parameters').get('varname')
+        varval = query_result.get('parameters').get('varval')
+        fulfillmentText = "Created variable {} with value: {}".format(varname, varval)
+        print(fulfillmentText)
     return jsonify({
         "fulfillmentText": fulfillmentText,
         "displayText": '40',

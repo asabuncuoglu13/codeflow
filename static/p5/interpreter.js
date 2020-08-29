@@ -7,11 +7,11 @@ const p5code =
     "  fill(212);\n" +
     "  stroke(232);\n" +
     "  for (var i = 0; i < width; i += 50) {\n" +
-    "    line(i, 0, i, height);\n" +
+    "    //line(i, 0, i, height);\n" +
     "    text(i, i + 1, 10);\n" +
     "  }\n" +
     "  for (var i = 0; i < height; i += 50) {\n" +
-    "    line(0, i, width, i);\n" +
+    "    //line(0, i, width, i);\n" +
     "    text(i, 0, i - 1);\n" +
     "  }\n" +
     "};\n" +

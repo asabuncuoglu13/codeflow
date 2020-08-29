@@ -27,6 +27,25 @@ dfMessenger.addEventListener('df-response-received', function (event) {
     if(col.length > 1 && colcom.length > 1)
       codein = codestr.format(colcom + " c: " + col);
   }
+  if(action === "anim.move") {
+    var dir = params.direction;
+    var num = params.number;
+    if(dir.length > 1 && num.length > 1)
+      codein = codestr.format("move " + dir + " : " + num);
+  }
+  if(action === "variable.define") {
+    var varname = params.varname;
+    var varval = params.varval;
+    if(varname.length > 1 && varval.length > 1)
+      codein = codestr.format("new variable n: " + varname + " v: " + varval);
+  }
+  if(action === "show.js") {
+    document.getElementById("js-code").innerHTML = p5code.format(functionBlocks.join(' '), variableBlocks.join(' '), drawBlocks.join(' '), loopBlocks.join());
+    document.querySelectorAll('pre code').forEach((block) => {
+      hljs.highlightBlock(block);
+      $( "#dialog" ).dialog( "open" );
+    });
+  }
   console.log(codein);
   eval(codein);
 });

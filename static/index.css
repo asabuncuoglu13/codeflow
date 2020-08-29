@@ -1,0 +1,26 @@
+body {
+  background-image: url('./img/background.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+  
+df-messenger {
+  --df-messenger-bot-message: #87a3e8;
+  --df-messenger-button-titlebar-color: #35185C;
+  --df-messenger-chat-background-color: #fff2e1;
+  --df-messenger-font-color: #ffffff;
+  --df-messenger-send-icon: #35185C;
+  --df-messenger-user-message: #24D3BF;
+  --df-messenger-send-icon: #FFFFFF;
+}
+
+button#widgetIcon div.rotate-fade #closeSvg { opacity: 0; }
+
+button#widgetIcon .df-chat-icon.hidden {opacity: 1;}
+
+.ui-dialog-titlebar {
+  background: rgb(44, 11, 87);
+  color: #ffffff;
+}
+

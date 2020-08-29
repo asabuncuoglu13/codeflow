@@ -176,28 +176,28 @@ const codeList = [{
     {
         title: "move left",
         code: "translate(-{0}, 0);\n",
-        input: "shape",
+        input: "numeric",
         code_type: 3,
         no_in: 1
     },
     {
         title: "move right",
         code: "translate({0}, 0);\n",
-        input: "shape",
+        input: "numeric",
         code_type: 3,
         no_in: 1
     },
     {
         title: "move up",
         code: "translate(0, {0});\n",
-        input: "shape",
+        input: "numeric",
         code_type: 3,
         no_in: 1
     },
     {
         title: "move down",
         code: "translate(0, -{0});\n",
-        input: "shape",
+        input: "numeric",
         code_type: 3,
         no_in: 1
     },
