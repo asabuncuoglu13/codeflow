@@ -1,3 +1,13 @@
+const jsCode =     
+  "{0}\n" +
+  " {1}\n" +
+  "function setup() {\n" +
+    " createCanvas(windowWidth, windowHeight);\n" +
+  "};\n" +
+  "function draw() {\n" +
+    " {2}\n" +
+    " {3}\n" +
+  "};";
 const dfMessenger = document.querySelector('df-messenger');
 dfMessenger.addEventListener('df-response-received', function (event) {
   console.log(event);
@@ -40,7 +50,7 @@ dfMessenger.addEventListener('df-response-received', function (event) {
       codein = codestr.format("new variable n: " + varname + " v: " + varval);
   }
   if(action === "show.js") {
-    document.getElementById("js-code").innerHTML = p5code.format(functionBlocks.join(' '), variableBlocks.join(' '), drawBlocks.join(' '), loopBlocks.join());
+    document.getElementById("js-code").innerHTML = jsCode.format(functionBlocks.join(' '), variableBlocks.join(' '), drawBlocks.join(' '), loopBlocks.join());
     document.querySelectorAll('pre code').forEach((block) => {
       hljs.highlightBlock(block);
       $( "#dialog" ).dialog( "open" );

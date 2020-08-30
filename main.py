@@ -9,6 +9,10 @@ def before_request():
 def index():
     return render_template('index.html')
 
+@web_site.route('/learn')
+def learn():
+    return render_template('learn.html')
+
 
 @web_site.route('/webhook', methods=['POST'])
 def webhook():
