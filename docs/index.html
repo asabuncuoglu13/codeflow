@@ -1,0 +1,173 @@
+<!doctype html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+    <meta name="theme-color" content="#4F7DC9">
+    <meta charset="UTF-8">
+    <title>CodeFlow: Powerful Ideas, Docs, Tutorials</title>
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+    <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://storage.googleapis.com/codelab-elements/codelab-elements.css">
+    <link rel="stylesheet" href="sketch/vendor/prism.css">
+    <style>
+        .success {
+            color: #1e8e3e;
+        }
+
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<google-codelab codelab-gaid=""
+                id="codeflow"
+                title="CodeFlow: Powerful Ideas, Docs, Tutorials"
+                environment="web"
+                feedback-link="https://github.com/asabuncuoglu13/codeflow">
+
+    <google-codelab-step label="Quick Start" duration="0">
+
+        <p>We developed this language (<em>... or better to say a programming environment or a test platform for natural algorithmic conversation</em>) to experiment with the chatbots and natural language to create an algorithmic conversation experience. When you run the repl.it repo, you will see a screen like a figure below. We included pixel values similar to a ruler on the screen to better plan your code.</p>
+        <p class="image-container"><img style="width: 511.81px" src="img\c78569ea189bea0.png"></p>
+        <p>You can draw and animate things on the screen. The system is powered by <a href="https://p5js.org" target="_blank">p5.js</a>, a Javascript client-side library for creating graphic and interactive experiences, based on the core principles of Processing. Let&#39;s see one example to understand the experience better. </p>
+        <p class="image-container"><img style="width: 463.00px" src="img\533bbeea4f2dc2b2.png"></p>
+        <p>To draw a rectangle on the canvas, you can simply say &#34;Draw a rectangle&#34;, &#34;Draw a rect&#34;, &#34;rect&#34;, &#34;rectangle&#34;, &#34;Draw a rectangle at 100, 100&#34;, &#34;Rect at 120, 200, with size 300, 400&#34;... These commands will all draw some rectangles at different positions with different size.</p>
+        <p class="image-container"><img style="width: 471.80px" src="img\a4dcc8433f52894f.png"></p>
+        <p>When the system processes your command, the result will automatically appear on the canvas. </p>
+
+
+    </google-codelab-step>
+
+    <google-codelab-step label="The System Design" duration="0">
+
+        <p>We should decide on how we will handle the ambiguity of the programming commands. When the system encounters perfectly specified parameters, there is no problem. </p>
+        <p class="image-container"><img style="width: 400.00px" src="img\ff14c2c0da27378d.png"></p>
+        <p>But, we have two options when the system cannot find all required parameters. First, we can define default values, render the command with these default values and enable programmers to change the parameters directly from the Javascript code. The second option is asking the parameters one by one until we get all the required parameters.</p>
+        <p class="image-container"><img style="width: 600.00px" src="img\b8e54bfe19301ceb.png"></p>
+        <p>While you develop your programs through a conversation with a chatbot, the interpreter will save your algorithm as Javascript code.</p>
+        <h2 is-upgraded><strong>Technical Specifications</strong></h2>
+        <aside class="warning"><p><strong>Requirements:</strong></p>
+            <p>🖥️ Repl.it</p>
+            <p>🖥️ Python3.8 ~ <em>Flask1.0.2</em></p>
+            <p>🖥️ Dialogflow (<em>If you want to contribute, I can add you to the project</em>)</p>
+            <p>🖥️ Javascript Libraries ~ <em>p5.js, highlight.js, fuse.js, jquery</em></p>
+        </aside>
+        <p>We used repl.it for easy prototyping, hosting the web server, and let others to easily fork and remix the application. </p>
+        <p>Flask is required to handle the webhook calls coming from the Dialogflow and generate unique responses for changing parameters. </p>
+        <p>We prototyped the chatbot with Dialogflow. It is easy to use and fast to integrate with different development environments. Although the platform is designed to answer the most popular use case scenarios for business applications, our experiment revealed some interesting use cases and possible development needs, if we want to achieve a more humanly experience.</p>
+        <p>We wanted to design this environment as accessible as possible, so, to run the application on every device, we wanted to develop a web application. We used <em>p5.js</em> to create graphics on canvas, <em>highlight.js</em> to show the resulted Javascript code in a readable-format, <em>fuse.js</em> to correct the code if some letters are not correctly typed to the chatbot, <em>jquery</em> to handle UI operations.</p>
+        <h2 is-upgraded><strong>Capabilities</strong></h2>
+        <p>We designed the interpreter model to be able to understand most p5.js commands. You can see the list of supported commands in the <a href="https://github.com/asabuncuoglu13/codeflow/blob/master/static/p5/code.js" target="_blank">code.js file</a>. The listed commands allow us to create shapes, stories, animations, diagrams and visualize our ideas. We choose p5.js as the core of the application as it is the most commonly used drawing library for the web and it has a growing community. But, in the next steps of the environment development process, to enable developers to solve different problems such as visualizing a data science problem or solving a machine learning problem, we will integrate libraries like d3.js or tensorflow.js.</p>
+        <p>Currently, the interpreter is powerful enough to run programs with the commands in the <a href="https://github.com/asabuncuoglu13/codeflow/blob/master/static/p5/code.js" target="_blank">code.js file</a>, however, chatbot design is not ready to run all the commands. So, you can try simple commands like drawing shapes, changing colors, moving elements or defining new variables, but you cannot create conditionals, loops or functions yet.</p>
+
+
+    </google-codelab-step>
+
+    <google-codelab-step label="The Motives of the Language" duration="0">
+
+        <p>Programming is the process of choosing the appropriate instructions to describe a specific task on a computer. It is like telling a recipe to your neighbour; you try to describe the steps precisely so the others can follow these steps and cook the exact same meal. Similar to recipes, programming languages let programmers list specific instructions in order to compute a task in a computational device and make the task understandable for the majority of programmers. Even if you call the same steps while applying the recipe, if you add some flavours more or cannot find one ingredient, the results change significantly. Maybe, instead of asking <em>what is the best way to describe a computer program with a programming language</em>, we can ask <em>what is the best way to tell a recipe</em>? </p>
+        <p>If we take a quick look at the history of programming languages we notice a trend in abstraction and see a sustained effort to improve the languages in a human-friendly format. In today&#39;s programming environment, this trend becomes more and more popular as the purpose of programming is building the bridge between humans and computers. However, fifty years ago, the majority of programmers would see this trend as an absolute misuse of valuable scientific resources [<em>ref: </em><a href="http://worrydream.com/dbx/" target="_blank"><em>http://worrydream.com/dbx/</em></a>]. </p>
+        <p>Recently, the natural language models show significant success in understanding the human language and as a result, developers show some examples of building HTML and CSS web content with only explaining the end product. After all, will we be able to tell the computer what we want to build as a final product and will computers generate this final product? Will our programming habits change? Before answering these questions, we still need to find answers to the following questions (<a href="https://www.quora.com/Is-it-possible-to-code-programs-with-natural-language-If-it-is-when-will-it-be-possible" target="_blank"><em>You can check Quora Page to see some possible answers from different point of views</em></a>):</p>
+        <ol type="1" start="1">
+            <li>Is our natural language specific enough to tell a computer exactly what to do?</li>
+            <li>Would programmers be more comfortable with natural language rather than current programming languages?</li>
+        </ol>
+        <p>In this programming task, rather than build a programming language, we wanted to explore the nature of the communication between human and computer and designed a prototype on building programs together with a chatbot. </p>
+        <p>Another focus of this programming environment is to prototype ideas fast. Imagine, you would like to create an animation on the web. As a novice programmer or excited maker, you have numerous choices for programming libraries. You can use p5.js, paper.js, or create a web application with Python or JAVA. This chat environment behaves like a programming language that interprets your commands as algorithmic steps and chooses the best methods for easy prototyping. </p>
+        <p>As we found a chance to write something on programming languages {:):)}, we wanted to share all the development process of the programming environment, examine the history of programming languages, modern programming paradigms, potential applications with AI and potential use cases for our chat-programming application.</p>
+
+
+    </google-codelab-step>
+
+    <google-codelab-step label="Discussion of the Language and Environment" duration="0">
+
+        <p>We are designing this language for everyone and our aim is to make this language intuitive to use, so, they will start coding without reading any documentation. We are not reading any documentation before opening a cookbook and starting cooking, so we think that the experience should be similar. But, we are aware that while we are cooking we have some rooted knowledge from the real world like how much is a tablespoon or half a cup. So, we should first give the user the standards and we are ready to go. </p>
+        <p>In the design process, we tried to answer the two questions we mentioned earlier. Let&#39;s start with the first one, ‘<em>Is our natural language specific enough to tell a computer exactly what to do?</em>&#39; The intuitive answer is NO, but we wanted to explore a few explanation texts from the <a href="https://github.com/github/CodeSearchNet" target="_blank">Github CodeSearchNet dataset</a>. This dataset is a large corpus of code, comments and human-annotated search values which is collected to enhance the sorting of code search at Github. The comments and annotations are mostly summarized the given code, and they are written for generating the code back, but it was useful to better see the pattern, how developers write code-related texts.</p>
+        <p>Exploring Github&#39;s dataset was useful to understand different patterns on explaining code to others, but these folk did not explain to a chatbot. So, we wanted some friends to explain some selected code from the Coding Train&#39;s tutorial. We also thought about analyzing Dan&#39;s explanations, but dude was talking so fast... So, if we make an analysis it will be another experiment with a system setup :)</p>
+        <p>Now, let&#39;s stick with our friends&#39; possible to chat with a bot. See how one of our friends would talk to a bot for the following program from the Coding Train&#39;s nested loop tutorial:</p>
+        <script type="text/p5" data-autoplay data-preview-width="500" data-height="320">
+function setup() {
+    createCanvas(400, 300);
+}
+function draw() {
+    background(0);
+    strokeWeight(4);
+    stroke(255);
+
+    for (var x = 0; x <= width; x += 50) {
+        for (var y = 0; y <= height; y += 50) {
+            fill(random(255), 0, random(255));
+            ellipse(x, y, 25, 25);
+        }
+    }
+}
+        </script>
+        <p>It is one of the simplest forms of nested loops; we are just creating a nested loop for the width and height of the canvas and creating ellipses with the size of 25, 25 with the 50-pixel gaps.</p>
+        <p>A conversation goes like this when we show the code:</p>
+        <ul>
+            <li>Make background black</li>
+            <li>Stroke weight is 4</li>
+            <li>Stroke colour is white</li>
+            <li>Create a for loop with the variable x, until x is hit to width, increase x by 50</li>
+            <li>Create another for loop with the variable y, until y is hit to width, increase y by 50</li>
+            <li>Fill colour with random red, 0 and random green component</li>
+            <li>Create ellipses at the x and y positions with the size 25 and 25s</li>
+            <li>Close both loops</li>
+        </ul>
+        <p>Now, this conversation is very similar to pseudocode, but one important difference it actually follows the code lines very specifically. But, what if we did not show the code and just showed the resulted canvas, one conversation goes like this:</p>
+        <ul>
+            <li>Execute the following steps for each frame rate:</li>
+            <li>Create a nested loop with the 40-pixel spaces</li>
+            <li>Draw ellipses on loop&#39;s variable positions</li>
+            <li>Fill these ellipses with random colour</li>
+        </ul>
+
+
+    </google-codelab-step>
+
+    <google-codelab-step label="Next Steps" duration="0">
+
+        <p>Most of us witnessed the success of GPT3-model on building new content from the description. If you haven&#39;t seen one here is one example at Figma, how one plugin &#34;<em>magically</em>&#34; knows how to design a website from scratch:</p>
+        <blockquote class="twitter-tweet tw-align-center"><p lang="en" dir="ltr">Words → website ✨<br><br>A GPT-3 × Figma plugin that takes a URL and a description to mock up a website for you. <a href="https://t.co/UsJz0ClGA7">pic.twitter.com/UsJz0ClGA7</a></p>&mdash; Jordan Singer (@jsngr) <a href="https://twitter.com/jsngr/status/1287026808429383680?ref_src=twsrc%5Etfw">July 25, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8">
+        </script>
+        <p>The GPT model shows success in creating structured documents such as HTML or XML, but we haven&#39;t seen any complex examples yet. We haven&#39;t seen any example of the GPT model that generates an interactive simulation with just some description. Our future goal will be to create JS Simulations that we can design interactive experiments and explorable explanations in ease. But, as you can see through this documentation, this task is not easy for our chatbot also and actually it is not really our natural instinct to create a simulation with just telling the details. When we create a physical simulation, we generally start drawing things and specify some details. So, maybe we should use dialogues after designing the general overview, to add details. </p>
+        <p>Let&#39;s visit this idea with an example. We chose a random simulation (it was the first sketch from Today&#39;s Picks list) from Open Processing: <a href="https://www.openprocessing.org/sketch/43171" target="_blank">https://www.openprocessing.org/sketch/43171</a> This sketch simulates the behaviour of hydrophobic and hydrophilic phase separation. </p>
+        <p class="image-container"><img style="width: 322.80px" src="img\9effe1707f087f10.png"></p>
+        <p>After we play with the simulation, we took notes to describe this simulation to our future chatbot:</p>
+        <ul>
+            <li>It is a simulation for understanding the behaviour of hydrophobic and hydrophilic interactions. To simulate and control the interactions, we will create objects called Atoms.</li>
+            <li>This atom model will be able to change its position, velocity, acceleration and electrical charge.</li>
+            <li>The position vector will translate the position with a random walk.</li>
+            <li>The velocity vector will define its velocity with a random value between -3 and 3.</li>
+            <li>The acceleration will depend on the distance between the different types of Atom.</li>
+            <li>The atoms will look like a circle and if the type is WATER it will be blue and if the atom is OIL it will be red.</li>
+            <li>Now, I need to calculate the repulsion force, acceleration, velocities and positions. Based on the relationship between the defined atoms,</li>
+            <li>The repulsion force will depend on the range, distance and magnitude variables. I will be calculated with the following formula:</li>
+        </ul>
+        <pre>distance = max(d, 0.1)
+(distance &lt; range) ? magnitude * (range / d-1) : 0</pre>
+        <p>Then we sketched the following interface, if we would be creating an object-oriented model with the power of our natural language. Here, the interface allow us to draw things by hand, and define this shapes as objects, equations or logical models, so it can construct the fundamental elements, and presents you to bind them together.</p>
+        <p class="image-container"><img style="width: 600.00px" src="img\2f2b8158d8d14245.png"></p>
+        <p><strong>Extra, but worth sharing:</strong></p>
+        <p>When we check other ways of describing a simulation, we encountered with Emoji Simulator. It is another algorithmic effort to create simulations with emojis and rules. You can read how emoji simulator works and what is the logic behind the system from this link <a href="https://ncase.me/simulating/index_old.html" target="_blank">https://ncase.me/simulating/index_old.html</a></p>
+        <p class="image-container"><img style="width: 461.95px" src="img\9d82d263c799e36.png"></p>
+        <p>Now, the next steps will be better understand Explorable Explanations, and how can we use our findings and expertise to develop better simulation development environments.</p>
+
+
+    </google-codelab-step>
+
+</google-codelab>
+
+<script src="https://storage.googleapis.com/codelab-elements/native-shim.js"></script>
+<script src="https://storage.googleapis.com/codelab-elements/custom-elements.min.js"></script>
+<script src="https://storage.googleapis.com/codelab-elements/prettify.js"></script>
+<script src="https://storage.googleapis.com/codelab-elements/codelab-elements.js"></script>
+
+<script src="sketch/vendor/jquery.js"></script>
+<script src="//toolness.github.io/p5.js-widget/p5-widget.js"></script>
+<script src="sketch/vendor/prism.js" data-manual></script>
+
+</body>
+</html>
