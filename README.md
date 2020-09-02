@@ -4,6 +4,9 @@
 ⚡⚡⚡ This README is just a quick-start for the environment, please read our [CODELAB](https://asabuncuoglu13.github.io/codeflow/#0) if you want to explore the project! Also, check the project from [Repl.it](https://repl.it/@pokingaround/codeflow)
 
 ---
+
+[![Run on Repl.it](https://repl.it/badge/github/asabuncuoglu13/codeflow)](https://repl.it/github/asabuncuoglu13/codeflow)
+
 We developed this language (_... or better to say a programming environment or a test platform for natural algorithmic conversation_) to experiment with the chatbots and natural language to create an algorithmic conversation experience. When you run the repl.it repo, you will see a screen like a figure below. We included pixel values similar to a ruler on the screen to better plan your code.
 
 ![alt_text](docs/img/c78569ea189bea0.png "image_tooltip")
